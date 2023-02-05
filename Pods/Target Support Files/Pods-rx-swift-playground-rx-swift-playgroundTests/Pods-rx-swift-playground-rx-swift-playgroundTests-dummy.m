@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_rx_swift_playground_rx_swift_playgroundTests : NSObject
+@end
+@implementation PodsDummy_Pods_rx_swift_playground_rx_swift_playgroundTests
+@end

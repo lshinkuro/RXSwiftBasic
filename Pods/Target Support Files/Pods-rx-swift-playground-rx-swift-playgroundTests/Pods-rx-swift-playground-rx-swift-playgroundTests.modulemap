@@ -1,0 +1,6 @@
+module Pods_rx_swift_playground_rx_swift_playgroundTests {
+  umbrella header "Pods-rx-swift-playground-rx-swift-playgroundTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

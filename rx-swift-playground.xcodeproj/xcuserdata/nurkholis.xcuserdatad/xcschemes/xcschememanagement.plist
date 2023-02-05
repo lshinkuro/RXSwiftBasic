@@ -7,7 +7,25 @@
 		<key>rx-swift-playground.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>0</integer>
+			<integer>5</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>32D5C3EF2803DEFC006AF5C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>32D5C4052803DEFF006AF5C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>32D5C40F2803DEFF006AF5C9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
