@@ -32,6 +32,7 @@ class ViewController: UIViewController {
     let subjects = PublishSubject<String>()
     let isShow = PublishSubject<Bool>()
     let behavior = BehaviorSubject<String>(value: "Kintil")
+    let arrayInt = BehaviorSubject<Int>(value: 0)
 
     var textBaru = String("Initial")
     var isNumberOnly = false
@@ -97,6 +98,52 @@ class ViewController: UIViewController {
       }).disposed(by: bag)
       behavior.onNext("Bagus")
 
+      arrayInt
+      // akan mengabaikan semua inputan yang masuk tapi akan menjadi never setelahnya
+//        .ignoreElements()
+       // hanya mengambil value di trigerr index ke 1
+        .element(at: 1)
+      // kalo ada item yang double ga akan di eksekusi sampe ada item input yang berubah
+        .distinctUntilChanged()
+      // hanya mengambil 6 trigger awal
+        .take(6)
+      // akan berhenti trigger data ketika observable lain di trigger ambil value sebelumnya
+        .take(until: isShow)
+      // akan di eksekusi setelah observable lain di  triger ambil item setelahnya
+        .skip(until: isShow)
+      // akan menskip value yang kondisinya sesuai sama yang di bawah ini
+        .skip(while: {$0 % 2 == 0})
+      // untuk filter item di rx
+        .filter{ $0 > 0 }
+      // merubah value di dalamnya menjadi betuk lain
+        .map{$0 * 2}
+        .subscribe(onNext: {[weak self] item in
+        guard let self = self else {
+          return
+        }
+         print("item \(item)")
+      }).disposed(by: bag)
+
+      arrayInt.onNext(0)
+      arrayInt.onNext(2)
+      arrayInt.onNext(3)
+      arrayInt.onNext(4)
+      arrayInt.onNext(4)
+      arrayInt.onNext(5)
+
+      isShow.onNext(true)
+
+      arrayInt.onNext(6)
+
+      isShow.onNext(false)
+
+      Observable.zip(subjects, behavior).subscribe(onNext: {[weak self] item1, item2 in
+        print(item1+"asda")
+        print(item2+"kholis")
+      }).disposed(by: bag)
+
+      subjects.onNext("apaa")
+
     }
 
   func setupAction() {
@@ -136,6 +183,7 @@ class ViewController: UIViewController {
         self.subjects.onNext(self.textBaru)
         print("tap")
       }).disposed(by: bag)
+
 
   }
 }
