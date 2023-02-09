@@ -8,6 +8,9 @@
 import UIKit
 import RxSwift
 import RxGesture
+import Alamofire
+import RxAlamofire
+
 
 // RXGesture itu di gunakan untuk reactive pada component 2 di swift seperti button, textfield, view
 //kita bisa memberinya fungsi tekan atau merubah isi textfield tanpa perlu menggunakan delegate untuk textfield atau yang lain2
@@ -27,15 +30,33 @@ class ViewController: UIViewController {
   @IBOutlet weak var nameField: UITextField!
 
   private let bag = DisposeBag()
+  private var api = ApiManager()
 
 
     let subjects = PublishSubject<String>()
     let isShow = PublishSubject<Bool>()
     let behavior = BehaviorSubject<String>(value: "Kintil")
     let arrayInt = BehaviorSubject<Int>(value: 0)
+    let array = BehaviorSubject<[Int]>(value: [2, 3, 4])
+    var tmpArr = [9]
+
+    var filmData: Films?
 
     var textBaru = String("Initial")
     var isNumberOnly = false
+
+    let person = Person()
+    let home = Home()
+
+    // variable ini hanya aktiv ketika di trigger jadi ga makan memori
+    lazy var updatePrefix = Binder<String>(nameField) { textField, value in
+        if value.hasPrefix("62") {
+            if let range = textField.text?.range(of: "62") {
+                textField.text = textField.text?.replacingCharacters(in: range, with: "0")
+            }
+        }
+    }
+
 
 
     lazy var formatText = Binder<String>(self.nameField) { [weak self] textField, value in
@@ -66,8 +87,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         setup()
         setupAction()
+        fetchFilms(of: Films.self) { items in
+          print(items.results.first?.title ?? "kokok")
+
+        }
+        searchStarships(for: "Wing")
+        person.subject.onNext("di ganti bro")
+        home.behaviour.onNext("behaviour subject")
     }
-    
+
     func setup() {
        // baris ini tidak akan di eksekusi karena belum di subscribe
         subjects.onNext("Kholis")
@@ -91,6 +119,7 @@ class ViewController: UIViewController {
       isShow.onNext(true)
       isShow.onNext(false)
 
+      behavior.onNext("lukman")
       behavior.subscribe(onNext: {
         [weak self] item in
         self?.behaveLabel.text = item.uppercased()
@@ -117,10 +146,7 @@ class ViewController: UIViewController {
         .filter{ $0 > 0 }
       // merubah value di dalamnya menjadi betuk lain
         .map{$0 * 2}
-        .subscribe(onNext: {[weak self] item in
-        guard let self = self else {
-          return
-        }
+        .subscribe(onNext: { item in
          print("item \(item)")
       }).disposed(by: bag)
 
@@ -137,12 +163,41 @@ class ViewController: UIViewController {
 
       isShow.onNext(false)
 
-      Observable.zip(subjects, behavior).subscribe(onNext: {[weak self] item1, item2 in
+      // cara merubah filter array di rx dengan map kemudian di filter
+      array.asObservable()
+        .map { $0.filter{ $0%2 == 0 }}
+        .subscribe(onNext: { item in
+        print("hey \(item)")
+      })
+        .disposed(by: bag)
+
+      // bind di gunakan untuk memasukan data ketujuan tertentu
+      nameField.rx.text
+          .compactMap { $0 }
+          .bind(to: updatePrefix)
+          .disposed(by: bag)
+
+
+      // manggabungkan dua variable rx dan mengeksekusinya bersama sama sesuai kondisi value terakhir ya gaes
+      Observable
+        .zip(subjects, behavior)
+        .subscribe(onNext: { item1, item2 in
         print(item1+"asda")
         print(item2+"kholis")
       }).disposed(by: bag)
 
       subjects.onNext("apaa")
+
+
+      fetchDefaultMenu().subscribe(onNext: { [weak self] data in
+        guard let self = self else {
+          return
+        }
+        self.title = "Kholis"
+        self.filmData = data
+        self.titleLabel.text = self.filmData?.results.first?.title
+
+      }).disposed(by: bag)
 
     }
 
@@ -208,6 +263,112 @@ extension UITextField {
           textField.text = String(text.prefix(maxLength))
       }
   }
+}
+
+
+extension ViewController {
+  func fetchFilms<T: Decodable>(of: T.Type, completion:@escaping (_ data: T) -> Void) {
+    let request = AF.request("https://swapi.dev/api/films")
+    request.validate().responseDecodable(of: T.self) { (response) in
+      guard let items = response.value else { return }
+      completion(items)
+      }
+    }
+
+
+  func searchStarships(for name: String) {
+    // 1
+    let url = "https://swapi.dev/api/starships"
+    // 2
+    let parameters: [String: String] = ["search": name]
+    // 3
+    AF.request(url, parameters: parameters)
+      .validate()
+      .responseDecodable(of: Starships.self) { response in
+        // 4
+        guard let starships = response.value else { return }
+        print(starships.results)
+      }
+  }
+
+
+}
+
+extension ViewController {
+
+  // fetch data dengan menggunakan rxalamofire
+  func fetchDefaultMenu() -> PublishSubject<Films> {
+      let subject = PublishSubject<Films>()
+      api.requestAPI(endpoint: .fetchFilm)
+          .subscribe { (data: Films) in
+              subject.onNext(data)
+          } onError: { error in
+              subject.onError(error)
+          }
+          .disposed(by: bag)
+      return subject
+  }
+}
+
+
+// MARK: - Welcome
+struct Films: Codable {
+    let count: Int
+    let next, previous: String?
+    let results: [Result]
+}
+
+// MARK: - Result
+struct Result: Codable {
+    let title: String
+    let episodeID: Int
+    let openingCrawl, director, producer, releaseDate: String
+    let characters, planets, starships, vehicles: [String]
+    let species: [String]
+    let created, edited: String
+    let url: String
+
+    enum CodingKeys: String, CodingKey {
+        case title
+        case episodeID = "episode_id"
+        case openingCrawl = "opening_crawl"
+        case director, producer
+        case releaseDate = "release_date"
+        case characters, planets, starships, vehicles, species, created, edited, url
+    }
+}
+
+// MARK: - Welcome
+struct Starships: Codable {
+    let count: Int
+    let next: String?
+    let previous: String?
+    let results: [Starship]
+}
+
+// MARK: - Result
+struct Starship: Codable {
+    let name, model, manufacturer, costInCredits: String
+    let length, maxAtmospheringSpeed, crew, passengers: String
+    let cargoCapacity, consumables, hyperdriveRating, mglt: String
+    let starshipClass: String
+    let pilots, films: [String]
+    let created, edited: String
+    let url: String
+
+    enum CodingKeys: String, CodingKey {
+        case name, model, manufacturer
+        case costInCredits = "cost_in_credits"
+        case length
+        case maxAtmospheringSpeed = "max_atmosphering_speed"
+        case crew, passengers
+        case cargoCapacity = "cargo_capacity"
+        case consumables
+        case hyperdriveRating = "hyperdrive_rating"
+        case mglt = "MGLT"
+        case starshipClass = "starship_class"
+        case pilots, films, created, edited, url
+    }
 }
 
 

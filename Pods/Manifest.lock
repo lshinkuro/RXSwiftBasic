@@ -1,4 +1,10 @@
 PODS:
+  - Alamofire (5.6.4)
+  - RxAlamofire (6.1.1):
+    - RxAlamofire/Core (= 6.1.1)
+  - RxAlamofire/Core (6.1.1):
+    - Alamofire (~> 5.4)
+    - RxSwift (~> 6.0)
   - RxBlocking (6.5.0):
     - RxSwift (= 6.5.0)
   - RxCocoa (6.5.0):
@@ -14,12 +20,15 @@ PODS:
     - RxSwift (= 6.5.0)
 
 DEPENDENCIES:
+  - RxAlamofire (= 6.1.1)
   - RxBlocking (= 6.5.0)
   - RxGesture
   - RxTest (= 6.5.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
+    - RxAlamofire
     - RxBlocking
     - RxCocoa
     - RxGesture
@@ -28,6 +37,8 @@ SPEC REPOS:
     - RxTest
 
 SPEC CHECKSUMS:
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
+  RxAlamofire: beb75a1c452d0de225651db4903f5d29d034a620
   RxBlocking: 04b5fd28bb5ea49f7d64b80db8bbfe50d9cc1c7d
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
@@ -35,6 +46,6 @@ SPEC CHECKSUMS:
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxTest: eb2d23adefc5a5ebf5779c7792fa3edfe6ebcc17
 
-PODFILE CHECKSUM: 0dc90a3c21cff1d92e2be94ee7030d5d67b71078
+PODFILE CHECKSUM: 91ead12ae0a970396b6086644e0c088e585de714
 
 COCOAPODS: 1.11.3

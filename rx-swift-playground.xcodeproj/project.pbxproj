@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		325854622993895C003C2C66 /* publishSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325854612993895C003C2C66 /* publishSubject.swift */; };
+		32585464299396B7003C2C66 /* behaviuorSubject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32585463299396B7003C2C66 /* behaviuorSubject.swift */; };
+		325854672994ACC0003C2C66 /* GradView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325854662994ACC0003C2C66 /* GradView.swift */; };
 		32D5C3F42803DEFC006AF5C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5C3F32803DEFC006AF5C9 /* AppDelegate.swift */; };
 		32D5C3F62803DEFC006AF5C9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5C3F52803DEFC006AF5C9 /* SceneDelegate.swift */; };
 		32D5C3F82803DEFC006AF5C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5C3F72803DEFC006AF5C9 /* ViewController.swift */; };
@@ -16,6 +19,9 @@
 		32D5C40B2803DEFF006AF5C9 /* rx_swift_playgroundTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5C40A2803DEFF006AF5C9 /* rx_swift_playgroundTests.swift */; };
 		32D5C4152803DEFF006AF5C9 /* rx_swift_playgroundUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5C4142803DEFF006AF5C9 /* rx_swift_playgroundUITests.swift */; };
 		32D5C4172803DEFF006AF5C9 /* rx_swift_playgroundUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32D5C4162803DEFF006AF5C9 /* rx_swift_playgroundUITestsLaunchTests.swift */; };
+		32F96A5B29952E9600AF286B /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F96A5A29952E9600AF286B /* ApiManager.swift */; };
+		32F96A5D299537B200AF286B /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F96A5C299537B200AF286B /* Endpoint.swift */; };
+		32F96A5F2995461600AF286B /* BaseConstant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F96A5E2995461600AF286B /* BaseConstant.swift */; };
 		784FC230E325E1C9FC1679E8 /* libPods-rx-swift-playground-rx-swift-playgroundTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D6DC0D6AC6D3CFDA9E14BD7E /* libPods-rx-swift-playground-rx-swift-playgroundTests.a */; };
 		C56DE3C669F5E30C07B8A739 /* libPods-rx-swift-playground.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 79582280BA21BCC730CE66BE /* libPods-rx-swift-playground.a */; };
 /* End PBXBuildFile section */
@@ -40,6 +46,9 @@
 /* Begin PBXFileReference section */
 		0C6AFFF0022B32220562C455 /* Pods-rx-swift-playground-rx-swift-playgroundTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rx-swift-playground-rx-swift-playgroundTests.debug.xcconfig"; path = "Target Support Files/Pods-rx-swift-playground-rx-swift-playgroundTests/Pods-rx-swift-playground-rx-swift-playgroundTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2A66A97CE4D525378097D6FE /* Pods-rx-swift-playground.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rx-swift-playground.release.xcconfig"; path = "Target Support Files/Pods-rx-swift-playground/Pods-rx-swift-playground.release.xcconfig"; sourceTree = "<group>"; };
+		325854612993895C003C2C66 /* publishSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = publishSubject.swift; sourceTree = "<group>"; };
+		32585463299396B7003C2C66 /* behaviuorSubject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = behaviuorSubject.swift; sourceTree = "<group>"; };
+		325854662994ACC0003C2C66 /* GradView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradView.swift; sourceTree = "<group>"; };
 		32D5C3F02803DEFC006AF5C9 /* rx-swift-playground.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "rx-swift-playground.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D5C3F32803DEFC006AF5C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		32D5C3F52803DEFC006AF5C9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,6 +62,9 @@
 		32D5C4102803DEFF006AF5C9 /* rx-swift-playgroundUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "rx-swift-playgroundUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32D5C4142803DEFF006AF5C9 /* rx_swift_playgroundUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rx_swift_playgroundUITests.swift; sourceTree = "<group>"; };
 		32D5C4162803DEFF006AF5C9 /* rx_swift_playgroundUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = rx_swift_playgroundUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		32F96A5A29952E9600AF286B /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		32F96A5C299537B200AF286B /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		32F96A5E2995461600AF286B /* BaseConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseConstant.swift; sourceTree = "<group>"; };
 		79582280BA21BCC730CE66BE /* libPods-rx-swift-playground.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rx-swift-playground.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1DA0F6CF1B206B1E5375EEB /* Pods-rx-swift-playground.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rx-swift-playground.debug.xcconfig"; path = "Target Support Files/Pods-rx-swift-playground/Pods-rx-swift-playground.debug.xcconfig"; sourceTree = "<group>"; };
 		D6DC0D6AC6D3CFDA9E14BD7E /* libPods-rx-swift-playground-rx-swift-playgroundTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-rx-swift-playground-rx-swift-playgroundTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,8 +110,15 @@
 				F112C5B439D8D948989229AC /* Pods-rx-swift-playgroundTests.debug.xcconfig */,
 				DFBC7BED65F928988EC14D70 /* Pods-rx-swift-playgroundTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		325854652994ACA6003C2C66 /* common */ = {
+			isa = PBXGroup;
+			children = (
+				325854662994ACC0003C2C66 /* GradView.swift */,
+			);
+			path = common;
 			sourceTree = "<group>";
 		};
 		32D5C3E72803DEFC006AF5C9 = {
@@ -127,6 +146,8 @@
 		32D5C3F22803DEFC006AF5C9 /* rx-swift-playground */ = {
 			isa = PBXGroup;
 			children = (
+				32F96A5929952E7B00AF286B /* Network */,
+				325854652994ACA6003C2C66 /* common */,
 				32D5C3F32803DEFC006AF5C9 /* AppDelegate.swift */,
 				32D5C3F52803DEFC006AF5C9 /* SceneDelegate.swift */,
 				32D5C3F72803DEFC006AF5C9 /* ViewController.swift */,
@@ -134,6 +155,8 @@
 				32D5C3FC2803DEFE006AF5C9 /* Assets.xcassets */,
 				32D5C3FE2803DEFE006AF5C9 /* LaunchScreen.storyboard */,
 				32D5C4012803DEFE006AF5C9 /* Info.plist */,
+				325854612993895C003C2C66 /* publishSubject.swift */,
+				32585463299396B7003C2C66 /* behaviuorSubject.swift */,
 			);
 			path = "rx-swift-playground";
 			sourceTree = "<group>";
@@ -153,6 +176,16 @@
 				32D5C4162803DEFF006AF5C9 /* rx_swift_playgroundUITestsLaunchTests.swift */,
 			);
 			path = "rx-swift-playgroundUITests";
+			sourceTree = "<group>";
+		};
+		32F96A5929952E7B00AF286B /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				32F96A5A29952E9600AF286B /* ApiManager.swift */,
+				32F96A5C299537B200AF286B /* Endpoint.swift */,
+				32F96A5E2995461600AF286B /* BaseConstant.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 		3884CD92A0ABA52657637224 /* Frameworks */ = {
@@ -344,8 +377,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				325854672994ACC0003C2C66 /* GradView.swift in Sources */,
+				32585464299396B7003C2C66 /* behaviuorSubject.swift in Sources */,
+				32F96A5D299537B200AF286B /* Endpoint.swift in Sources */,
 				32D5C3F82803DEFC006AF5C9 /* ViewController.swift in Sources */,
+				32F96A5F2995461600AF286B /* BaseConstant.swift in Sources */,
+				32F96A5B29952E9600AF286B /* ApiManager.swift in Sources */,
 				32D5C3F42803DEFC006AF5C9 /* AppDelegate.swift in Sources */,
+				325854622993895C003C2C66 /* publishSubject.swift in Sources */,
 				32D5C3F62803DEFC006AF5C9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
